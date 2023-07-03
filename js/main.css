@@ -1,0 +1,309 @@
+.dropdown {
+  background-color:ghostwhite;
+  box-shadow: 0px 2px 3px #666666;
+   color:black;
+  font-size: 14px;
+  text-align: center;
+ margin-left:0px;
+    margin-top:0px;
+        margin-bottom:10px;
+    height:  25px; 
+    width: 80%;
+    overflow-y: scroll
+  
+}
+
+
+/*scrollbar*/
+/* width */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #888;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
+/*scrollbar*/
+
+/*links*/
+a:any-link{
+    target: "_blank"
+}
+
+.p
+{font-size: 12px;
+  font-family: Arial, Helvetica, sans-serif;  
+}
+
+#school_name
+{
+    font-size: 20px;
+    font-weight: bold;
+    color: #44546A;
+    margin-bottom: 6px;
+}
+
+#address
+{
+    font-size: 12px;
+    margin-bottom: 6px;
+    margin-top: 0px;
+}
+
+#performance_heading
+{
+    margin-bottom: 6px;
+    margin-top: 0px;
+}
+
+#fee_heading
+{
+    margin-bottom: 6px;
+    margin-top: 0px;
+}
+
+#school_gender_age
+{
+    margin-bottom: 6px;
+    margin-top: 0px;
+}
+
+#day_fee
+{
+    margin-bottom: 6px;
+    margin-top: 0px;
+}
+
+#boarding_fee
+{
+    margin-bottom: 6px;
+    margin-top: 0px;
+}
+
+.left_menu {
+  width: 100%; 
+    height:auto;
+    text-align: center;
+margin-bottom: 10px;
+  background-color: white;
+     color:black;
+  font-family: Arial, Helvetica, sans-serif;
+  border-style: solid;
+  border-color: #cfe2cf;
+}
+
+#map_legend{
+    position: fixed;
+    margin-top: 150px;
+    margin-left: 20px;
+    background-color: whitesmoke;
+    z-index: 1000;
+      padding-left: 10px;
+    padding-right: 10px;
+       font-family: Arial, Helvetica, sans-serif;
+       font-size: 12px;
+       width: 70px;
+       height: 270px;
+    
+}
+
+
+#infopanel_heading {
+    position: fixed;
+    top: 50px;
+    right: 15px;
+    background-color: #cfe2cf;
+    width: 260px;
+    height: 25px;
+
+    font-family: Arial, Helvetica, sans-serif;
+    z-index: 1000;
+    padding-left: 2px;
+    padding-right: 10px;
+}
+
+
+#infopanel {
+    position: fixed;
+    background-color: white;
+    color:black;
+    width: 250px;
+    height: auto;
+    text-align: center;
+  border-style: solid;
+  border-color: #cfe2cf;
+    font-family: Arial, Helvetica, sans-serif;
+    top: 75px;
+   right: 15px;
+    z-index: 1000;
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-bottom: 20px;
+}
+
+
+#about_panel {
+    position: absolute;
+    top:70px;
+    left: 25%;
+
+    background-color: white;
+    color:black;
+    width: 35%;
+    height: 400px;
+    text-align: left;
+  border-style: solid;
+  border-color: #cfe2cf;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 14px;
+    z-index: 1000;
+    overflow-y: auto;
+}
+
+
+#counties_info_heading {
+    background-color: #cfe2cf;
+    vertical-align: middle;
+
+    font-family: Arial, Helvetica, sans-serif;
+    z-index: 1000;
+    padding-left: 2px;
+    padding-right: 10px;
+    
+    height:28px;
+    line-height: 28px;
+}
+
+.navbar {
+   position: absolute;
+    top: 0;
+    width:98%;
+    background-color: #437043;
+  font-size: 18px;;
+    margin-top:0px;
+        margin-bottom:0px;
+    height:  40px;
+    
+}
+  
+.navbar_text {
+    
+   color:white;
+  font-weight: bold; 
+    font-family: Arial, Helvetica, sans-serif;
+    margin-top: 0px; 
+    vertical-align: middle; 
+    line-height: 40px
+}
+
+
+.county_info_text
+{
+margin-bottom:6px;
+margin-top:6px;    
+display: inline-block;
+cursor: pointer; 
+font-size: 14px;
+color:black;
+
+}
+
+.county_info_text:hover
+{
+color:blue;
+
+}
+
+
+.button_text {
+     fill: black;
+     font-family: Arial;
+     font-size: 12px;
+}
+
+.button_text:hover {
+     font-weight:bold;
+}
+
+.down-button {
+  border:  1px;
+    background-color: #cfe2cf;
+    color: #396039;
+     padding: none; 
+    border:none;
+text-align: center;
+  font-size: 20px;
+    cursor: pointer; /* Mouse pointer on hover */
+  
+}
+
+.heading
+{
+    width: 100%; 
+    background-color: #cfe2cf;
+    margin-top: 5px; 
+   margin-bottom: 5px; 
+   box-shadow: 0 -5px 0#cfe2cf, 0 5px 0 #cfe2cf;
+    
+}
+
+.rect_rank:hover {
+      
+    /*filter: brightness(90%);*/
+    background-color: #cfe2cf;
+    stroke: black;
+    stroke-width: 1.5px;
+}
+
+.rect_button {
+    stroke: black;
+    text-align: center;
+}
+
+.rect_button:hover {
+     filter: brightness(80%);
+     stroke-width: 1.5px;
+}
+
+/*slider*/
+.slider
+{margin-top: 10px;
+ margin-left:10px;
+}
+
+/* svg */
+
+.svg-container {
+  display: inline-block;
+  position: relative;
+  width: 100%;
+  vertical-align: top;
+  overflow: hidden;
+    padding-bottom: 20%;
+}
+
+.svg-container-1 {
+  display: inline-block;
+  position: relative;
+  width: 100%;
+     padding-bottom: 100%; /* aspect ratio */
+  vertical-align: top;
+  overflow: hidden;
+}
+.svg-content-responsive {
+  display: inline-block;
+  position: absolute;
+  left: 0;
+}

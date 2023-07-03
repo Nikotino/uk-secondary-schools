@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+	<meta charset="utf-8" http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>...</title>
+    
+       <script src="//maps.google.com/maps/api/js?sensor=true"></script>
+    
+    <script src="https://d3js.org/d3.v5.min.js"></script>   
+    <script src="https://d3js.org/d3-geo-projection.v2.min.js"></script>
+
+    <script src="http://d3js.org/topojson.v1.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="//maps.googleapis.com/maps/api/js?sensor=false"></script>
+    <script src="https://unpkg.com/d3-simple-slider"></script>
+       <script src="https://kit.fontawesome.com/1b8221922b.js" crossorigin="anonymous"></script>
+           <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+ 
+ 
+  <!-- Load Leaflet -->
+<script src="https://unpkg.com/leaflet@1.3.4/dist/leaflet.js" integrity="sha512-nMMmRyTVoLYqjP9hrbed9S+FzjZHW5gY1TWCHA5ckwXZBadntCNs8kEqAWdrb9O7rxbCaA4lKTIWjDXZxflOcA==" crossorigin=""></script>
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.3.4/dist/leaflet.css" />
+
+ <!-- Leaflet Search -->
+<link rel="stylesheet" href="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.css" />
+<script src="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.js"></script>
+
+
+ <!--Styles-->
+    <link rel="stylesheet" href="js/main.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    
+    </head>
+
+<body>
+     <div id="navbar" class="navbar">
+         <div style="width:16%; text-align:center; float: left">
+               <h3 class="navbar_text">TOP UK SCHOOLS</h3>
+               </div>
+               <div style="width:10%; text-align:center; float: left">
+                <h4 class="navbar_text" onclick="about_info()" style="cursor:pointer; margin-top:2px">About</h4>
+                </div>
+                           
+          </div>
+   <div id="controlpanel" class=”col” style="width:16%; height: 100%; float:left; margin-top:40px;  display: block"> 
+    <div class="left_menu" id="choose_rank">
+        <h4 class="heading">School Rank</h4>
+        <div id="choose_rank_rect"> </div>
+        
+    </div>
+   <div class="left_menu" id="choose_type">
+   <h4  class="heading">Gender</h4>
+    <div id="choose_gender_rect"> </div>
+   </div>
+   
+   <div class="left_menu" id="choose_gender">
+   <h4  class="heading">School Type</h4>
+   <div id="choose_type_rect"> </div>
+   </div>
+   
+    <div class="left_menu" id="boarding">
+    <h4  class="heading">Boarding</h4>
+    <div id="choose_boarding_rect"> </div>
+    </div>
+    
+        <div class="left_menu" id="fee_range">
+        <h4  class="heading">Annual Fee Range, K£</h4>
+             <div id="choose_fee_range" style="margin-top: 10px, margin-left:10px">
+        </div>
+       
+        </div>
+        
+         <div class="left_menu" id="counties_info">
+             <div id="counties_info_heading">
+        <h4 style="display: inline">Counties Info, 2021</h4>
+         <button type='button' class="down-button" id='expand_info' style="display: inline; float:right" onclick="clear_map()"><i class="fa-solid fa-rectangle-xmark"></i></button> 
+         </div>
+        <div id="crime_rate">
+               <p class="county_info_text" title= "Click to view" onclick="update_map('crime_rate', 'desc')">Crime Rate, # per 100K population</p>
+             <div id="crime_rect"></div>
+             </div>
+        <div id="rent">
+            <p class="county_info_text" title= "Click to view" onclick="update_map('rent', 'desc')">Rent Cost, &pound/month (2 bedroom) </p> 
+            <div id="rent_rect"></div></div>
+        <div id="median_wage">
+            <p class="county_info_text" title= "Click to view" onclick="update_map('median_wage', 'asc')">Median Wage, Annual, K&pound </p>
+            <div id="wage_rect"></div>
+            </div>
+         </div>
+        
+   </div>
+ <div id="mappanel" class=”col” style="width:82%; height: 100%; float:left; margin-top:30px;  margin-left: 10px;">
+     
+     <div id="about_panel" style="display: none">
+        <div id="about_panel_menu" style="width:30%; height: 100vh; float: left; padding-top:10px; padding-left:10px; color: white; background-color: #437043">
+            <h3>
+             <p onclick="show_item('about_about')" style="cursor:pointer">About </p>
+                 <p onclick="show_item('about_data_sources')" style="cursor:pointer"> Data Sources </p>
+                  <p onclick="show_item('about_credits')" style="cursor:pointer"> Credits  </p>
+                   <p onclick="show_item('about_contacts')" style="cursor:pointer"> Contacts  </p>
+           </h3>
+        </div>
+        
+        <div id="about_panel_info" style="width:65%;  height: 100%;  float: left; padding-left:10px; padding-top: 10px; padding-bottom:20px">
+             <button type='button' class="down-button" style="display: inline; float:right; background-color: white" onclick="close_info('#about_panel')"><i class="fa-solid fa-rectangle-xmark"></i></button> 
+           <p> </p> 
+<div id="about_about" style="display: block">
+    <p> </p> 
+        <p>  The map enlists top 500 secondary school in the UK, sorted by A-A* rate results in 2021. That includes both independent and state schools. The filters allow you to narrow down your search based on schools rating, fees, gender and boarding availability. 
+</div>
+<div id="about_data_sources" style="display: none">
+<h3> Top schools list and information: </h3>  <a href="https://www.thetimes.co.uk/article/best-uk-schools-guide-parent-power-tr95xdztg" target="_blank"> Parent Power 2023: Best UK schools guide and league table, The Times </a> 
+<p></p>
+<h3>UK Counties data </h3>
+<b>Crime data: </b>
+<ul>
+<li>England&Wales: <a href="https://data.police.uk/data/" target="_blank">  https://data.police.uk/data/ </a> </li>
+<li>Scotland: <a href="https://www.gov.scot/collections/recorded-crime-in-scotland/" target="_blank"> https://www.gov.scot/collections/recorded-crime-in-scotland/ </a> </li>
+<li>North Ireland: <a href="https://www.ninis2.nisra.gov.uk/public/Theme.aspx?themeNumber=131&themeName=Crime%20and%20Justice" target="_blank"> NISRA Statistics Crime&Justice  </a>  </li>
+</ul>
+<b>Rent cost: </b>
+<ul>
+<li>England&Wales*:  <a href="https://www.gov.uk/government/statistical-data-sets/price-paid-data-downloads#yearly-file" target="_blank"> “Price Paid Data” dataset </a> </li>
+<li>Scotland: <a href="https://www.propertydealsinsight.com/property-heatmaps/" target="_blank"> Property Deals Insight  </a> </li>
+<li>North Ireland:<a href="https://www.nihe.gov.uk/getattachment/cfc0407f-a010-4bb1-8c04-7091dddd019f/performance-private-rental-market-NI-Jan-July-2021.pdf" target="_blank"> Performance of the PRIVATE RENTAL MARKET IN NORTHERN IRELAND, Ulster University  </a></li>
+</ul>
+<b>Median wage: </b>
+<ul>
+<li>England, Wales, Scotland: <a href="https://www.ons.gov.uk/employmentandlabourmarket/peopleinwork/earningsandworkinghours/datasets/placeofworkbylocalauthorityashetable7" target="_blank">Annual Survey of Hours and Earnings, Office for National Statistics. Table 7  </a> </li>
+<li>North Ireland:  <a href="https://www.nisra.gov.uk/statistics/labour-market-and-social-welfare/annual-survey-hours-and-earnings" target="_blank">Annual Survey of Hours and Earnings, NISRA </a>  </li>
+</ul>
+
+<p style="font-size:12px">
+*Rent prices provided at “Price Paid Data” dataset end to be 15-20% lower than the rent price provided at property websites and real estate commercial overviews. Therefore, rental prices for Scotland, taken from real estate market overview, are adjusted 15% down.</p>
+</div>
+<div id="about_credits" style="display: none">
+
+<p>
+<li> <a href="https://www.openstreetmap.org/" target="_blank"> OpenStreetMap</a>: geographic database of the Earth that is editable via open collaboration and freely licensed under the Open Database License</li>
+<p>
+<li> <a href="https://leafletjs.com/" target="_blank">Leaflet </a>: leading open-source JavaScript library for mobile-friendly interactive maps</li>
+<p>
+<li> <a href="https://www.npmjs.com/package/leaflet-geosearch" target="_blank">Leaflet geosearch </a></li>
+
+</div>
+<div id="about_contacts" style="display: none">
+
+ <p> You’re welcome to send your suggestions and comments at veronika@nuretdinova.com</p>
+ </div>
+</div>
+         </div>
+         
+         
+        <div id="map_legend" style="display: none">
+         <div id="map_legend_heading" style="margin-top:10px">    </div>
+         <div id="map_legend_body">    </div>
+     </div>
+     
+     
+     
+     <div id="uk_map" style="width: 100%; height: 92vh; float:left; margin-top:10px;  margin-left: 10px; margin-right: 10px;">  </div>
+     
+    </div>
+     <div id="infopanel_all" style="display: none">
+     <div id="infopanel_heading">
+         
+         <button type='button' class="down-button" id='expand_info' style="display: inline" onclick="display_info()"><i class="fa-regular fa-square-caret-down"></i></button> 
+         <h3  style="margin-bottom:6px; margin-left:8px; display: inline; color: black">School Info</h3>
+         <button type='button' class="down-button" id='expand_info' style="display: inline; float:right" onclick="close_info(infopanel_all)"><i class="fa-solid fa-rectangle-xmark"></i></button> 
+            </div>
+            
+<div id="infopanel">
+     <p id="school_name"></p>
+     <p  id="address"></p>
+          
+      <p id="website" style="color:blue; text-decoration: underline; cursor: pointer;margin-top: 0px;margin-bottom: 18px;"></p>
+       <p style="display: inline; font-size:16px; font-weight:bold">Rank: </p>
+      <text style="display: inline; font-size:16px" id="school_rank"></text>
+      <br>
+        <br>
+        <p  id="school_type" style="display: inline; font-size:16px; font-weight:bold"></p><p  style="display: inline; font-size:16px; font-weight:bold"> School</p>
+         <br>
+      
+      <h4 style="margin-bottom:6px; margin-top:18px" id="performance_heading">2021 Performance: </h4>
+        <p style="margin-bottom:6px; margin-top:0px; display: inline-block">A_LEVEL (A*/A): </p>
+        <p  id="A_LEVEL" style="display: inline"></p> <p  style="display: inline"> %</p>
+        <br>
+        <p style="margin-bottom:6px; margin-top:0px; display: inline-block">GCSE (A*/A/9/8/7): </p>
+        <p  id="GCSE" style="display: inline"></p><p  style="display: inline"> %</p>
+        <br>
+          <h4 style="margin-bottom:6px; margin-top:18px" id="performance_heading">Gender and Age: </h4>
+        <p  id="school_gender_age"></p>
+         <h4 style=" margin-top:18px; margin-bottom:6px" id="fee_heading">Fees per term: </h4>
+        <p  id="day_fee"></p>
+        <p  id="boarding_fee"></p>
+       </div>
+</div>
+
+       
+      <script src="js/uk_map1.js"></script>          
+     <script src="js/controlpanel.js"></script>
+       <script src="js/draggable.js"></script>
+  
+<script>
+
+
+
+function display_info()
+{
+    display_value = d3.select("#infopanel").style("display")=="block"? "none":"block"
+    d3.select("#infopanel").style("display", display_value)
+}
+
+function close_info(x)
+{
+    d3.select(x).style("display", "none")
+    
+}
+
+function about_info()
+{
+    display_value = d3.select("#about_panel").style("display")=="block"? "none":"block"
+    d3.select("#about_panel").style("display", display_value)
+    show_item('about_about')
+    
+}
+
+function show_item(x)
+{
+    about_items=['about_about', 'about_data_sources', 'about_credits', 'about_contacts']
+    d3.select("#"+x).style("display", "block")
+    about_items.filter(d=> d!=x).map(d=> d3.select("#"+d).style("display", "none"))
+    
+}
+
+
+// // Make the DIV element draggable:
+ dragElement(document.getElementById("about_panel"));
+
+</script>
+
+    </body>
+
+</html>
