@@ -16,7 +16,10 @@ Also, the user add a map layer showing the characteristics of schools location:
 - country rent cost;
 - country median wages
   
-Also, upon clicking a particular school the user will get more detailed information on a school.
+Also, upon clicking a particular school the user will get more detailed information on a school
+
+![image](https://github.com/Nikotino/uk-secondary-schools/assets/7644330/4d0584fb-5687-40d6-aad1-5de59ad162b6)
+
 
 
   
