@@ -1,6 +1,6 @@
 # uk-secondary-schools
 An app visualizing UK top 500 secondary schools from Times Parent Power 2023
-https://nikotino.github.io/uk-secondary-schools/
+https://veroscience.github.io/uk-secondary-schools/
 
 Data Source: https://www.thetimes.co.uk/article/best-uk-schools-guide-parent-power-tr95xdztg
 
